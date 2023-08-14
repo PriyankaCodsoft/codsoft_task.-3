@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Calculator</title>
+</head>
+<style>
+    body {
+        padding: 0;
+        margin: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 90vh;
+        user-select: auto;
+        background: whitesmoke;
+    }
+
+    .calculator {
+        margin-left: 1.9em;
+        padding: 15px;
+        outline: none;
+        border-radius: 10px;
+        box-shadow: 14px 14px 19px #cbced1, -14px -14px 19px #ffffff;
+        background-color:#ecf0f3 ;
+    }
+
+        .row button {
+        width: 60px;
+        height: 50px;
+        font-size: 20px;
+        border: none;
+        outline: none;
+        margin: 6px;
+        border-radius: 4px;
+        transition: .2s;
+        box-shadow: 6px 6px 9px #00000020,   -6px -6px 9px #ffff;
+    }
+    .row button:hover {
+        box-shadow: inset 6px 6px 9px rgba(16, 16, 16, .1), inset -6px -6px 9px #fff;
+        background: #fff;
+    }
+    .display #screen {
+        margin-bottom: .8em;
+        width: 300px;
+        height: 60px;
+        font-size: 35px;
+        outline: none;
+        border: none;
+        text-align: left;
+        background: white;
+        border-radius: 9px;
+       box-shadow: inset 9px 9px 9px #cbced1,  inset -9px -9px 9px #ffffff;
+    }
+
+    #eval {
+        background: #33ccff;
+        color: #fff;
+        box-shadow: inset 6px 6px 9px #66d9ff,  inset -6px -6px 9px #00ace6;
+    }
+
+    #eval:hover {
+        box-shadow: inset  6px 6px 9px #00ace6, inset -6px -6px 9px #00ace6;
+    }
+
+    #ac {
+        background: #33cc33;
+        color: #fff;
+    }
+
+    #ac:hover {
+        box-shadow: inset 6px 6px 9px #2eb82e,inset -6px -6px 9px #33cc33;
+    }
+
+    #ce {
+        background: #ff3399;
+        color: #fff;
+    }
+
+    #ce:hover {
+        box-shadow: inset 6px 6px 9px #e60073, inset -6px -6px 9px #ff3399;
+    }
+</style>
+
+<body>
+
+    <div class="calculator">
+        <div class="display">
+            <input id="screen" type="text" placeholder="0">
+        </div>
+
+        <div class="btns">
+            <div class="row">
+                <button id="ce" onclick="backspc()">CE</button>
+                <button class="btn">(</button>
+                <button class="btn">)</button>
+                
+                <button id="ac" onclick="screen.value=''">AC</button>
+            </div>
+           <div class="row">
+                <button class="btn">7</button>
+                <button class="btn">8</button>
+                <button class="btn">9</button>
+                <button class="btn">÷</button>
+            </div>
+             <div class="row">
+                <button class="btn">4</button>
+                <button class="btn">5</button>
+                <button class="btn">6</button>
+                <button class="btn">×</button>
+            </div>
+            <div class="row">
+                <button class="btn">1</button>
+                <button class="btn">2</button>
+                <button class="btn">3</button>
+                <button class="btn">-</button>
+            </div>
+           <div class="row">
+                <button class="btn">0</button>
+                <button class="btn">.</button>
+                <button id="eval" onclick="screen.value=eval(screen.value)">=</button>
+                <button class="btn">+</button>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    var screen = document.querySelector('#screen');
+    var btn = document.querySelectorAll('.btn');
+
+    
+    for (item of btn) {
+        item.addEventListener('click', (e) => {
+            btntext = e.target.innerText;
+
+            if (btntext == '×') {
+                btntext = '*';
+            }
+
+            if (btntext == '÷') {
+                btntext = '/';
+            }
+            screen.value += btntext;
+        });
+    }
+        function backspc() {
+        screen.value = screen.value.substr(0, screen.value.length - 1);
+    }
+</script>
+</html>
